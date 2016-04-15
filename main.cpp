@@ -4,9 +4,10 @@
 #include "ErdosRenyi.h"
 #include "Graph.h"
 #include "BarabasiAlbert.h"
-
+#include "RandomGeometric.h"
 #define ERDOS_RENYI
 #define BARABASI_ALBERT
+#define RANDOM_GERMETRIC
 
 using namespace std;
 
@@ -35,31 +36,79 @@ Graph* ErdosRenyi(int n,double p) {
 
 
 }
+void showMenu(){
+    cout<<"input your option"<<endl;
+    cout<<"a :ErdosRenyi random graph"<<endl;
+    cout<<"b :Random Geometric graph"<<endl;
+    cout<<"c :BarabasiAlbert random graph"<<endl;
+    cout<<"d :exit"<<endl;
+}
 int main() {
     int n;
     double p;
-    while (cin>>n>>p){
+    char op;
+    showMenu();
+    while (cin>>op){
+        if(op == 'd'){
+            break;
+        }
 #ifdef ERDOS_RENYI
-        Graph *graph = ErdosRenyi(n,p);
-        if(graph->bfs()){
-            cout<<"connected"<<endl;
-        } else{
-            cout<<"disconnected"<<endl;
-        }
-        graph->showMatrix();
+        if(op=='a'){
+            cout<<"input the size (n) of graph and the probability (p) between two vertexes \n"
+                    " spilt with  space in order"<<endl;
+            cin>>n>>p;
+            Graph *graph = ErdosRenyi(n,p);
+            if(graph->bfs()){
+                cout<<"connected"<<endl;
+            } else{
+                cout<<"disconnected"<<endl;
+            }
+            cout<<"Erdos Renyi :"<<endl;
+            graph->showMatrix();
+            cout<<'\n';
 #endif
+        } else if (op=='b'){
+#ifdef RANDOM_GERMETRIC
+            cout<<"input the size (n) of graph and the square (s) size of the geometric \n"
+                    " square and the the limit radius (r) between two geometric points in order"<<endl;
+            int n,s;
+            double r;
+            cin>>n>>s>>r;
+            RandomGeometric *rgModel = new RandomGeometric(n,s,r);
+            rgModel->getRandomGraph();
+            if(rgModel->getGraph()->bfs()){
+                cout<<"connected"<<endl;
+            } else{
+                cout<<"disconnected"<<endl;
+            }
+            cout<<"Random Geometric :"<<endl;
+            rgModel->getGraph()->showMatrix();
+            cout<<'\n';
+#endif
+
+        } else if(op=='c'){
 #ifdef BARABASI_ALBERT
-        BarabasiAlbert *baModel = new BarabasiAlbert(n);
-        int c = n/2;
-        int m = n/2;
-        baModel->getRandomGraph(n,c,m,p);
-        if(baModel->getGraph()->bfs()){
-            cout<<"connected"<<endl;
-        } else{
-            cout<<"disconnected"<<endl;
-        }
-        baModel->getGraph()->showMatrix();
+            BarabasiAlbert *baModel = new BarabasiAlbert(n);
+            cout<<"input the size (n) of graph and the probability (p) between\n"
+                    " two vertexes spilt with  space in order"<<endl;
+            cin>>n>>p;
+            int c,m;
+            cout<<"input the size (c) of core graph and the links number of \n"
+                    "each vertex spilt with space in order"<<endl;
+            cin>>c>>m;
+            baModel->getRandomGraph(n,c,m,p);
+            if(baModel->getGraph()->bfs()){
+                cout<<"connected"<<endl;
+            } else{
+                cout<<"disconnected"<<endl;
+            }
+            cout<<"Baarabasi Albert :"<<endl;
+            baModel->getGraph()->showMatrix();
+            cout<<'\n';
 #endif
+        }
+
+        showMenu();
 
 
     }
