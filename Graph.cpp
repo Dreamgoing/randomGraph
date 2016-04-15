@@ -17,7 +17,7 @@ void Graph::showMatrix() {
 
 void Graph::addEdge(Vertex *a, Vertex *b) {
     int tmp_a = a->getVertex();
-    cout<<tmp_a<<endl;
+    //cout<<tmp_a<<endl;
     int tmp_b = b->getVertex();
     this->graph->at(tmp_a).push_back(b);
     this->graph->at(tmp_b).push_back(a);
@@ -29,6 +29,11 @@ void Graph::addEdge(Vertex *a, Vertex *b, int cost) {
     this->addEdge(a,b);
     this->matrix[a->getVertex()][b->getVertex()] = cost;
     this->matrix[a->getVertex()][b->getVertex()] = cost;
+}
+
+
+bool Graph::isExist(int a, int b) {
+    return matrix[a][b] == 1 || matrix[b][a] == 1;
 }
 
 bool Graph::bfs() {

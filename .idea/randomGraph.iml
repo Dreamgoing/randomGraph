@@ -7,7 +7,9 @@
       <sourceFolder url="file://$MODULE_DIR$/Vertex.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/header.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BarabasiAlbert.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Graph.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BarabasiAlbert.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Graph.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ErdosRenyi.cpp" isTestSource="false" />

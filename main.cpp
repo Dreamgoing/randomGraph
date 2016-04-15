@@ -3,6 +3,11 @@
 #include "Vertex.h"
 #include "ErdosRenyi.h"
 #include "Graph.h"
+#include "BarabasiAlbert.h"
+
+#define ERDOS_RENYI
+#define BARABASI_ALBERT
+
 using namespace std;
 
 Graph* ErdosRenyi(int n,double p) {
@@ -32,15 +37,31 @@ Graph* ErdosRenyi(int n,double p) {
 }
 int main() {
     int n;
-    double q;
-    while (cin>>n>>q){
-        Graph *graph = ErdosRenyi(n,q);
+    double p;
+    while (cin>>n>>p){
+#ifdef ERDOS_RENYI
+        Graph *graph = ErdosRenyi(n,p);
         if(graph->bfs()){
             cout<<"connected"<<endl;
         } else{
             cout<<"disconnected"<<endl;
         }
         graph->showMatrix();
+#endif
+#ifdef BARABASI_ALBERT
+        BarabasiAlbert *baModel = new BarabasiAlbert(n);
+        int c = n/2;
+        int m = n/2;
+        baModel->getRandomGraph(n,c,m,p);
+        if(baModel->getGraph()->bfs()){
+            cout<<"connected"<<endl;
+        } else{
+            cout<<"disconnected"<<endl;
+        }
+        baModel->getGraph()->showMatrix();
+#endif
+
+
     }
     return 0;
 }

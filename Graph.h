@@ -32,7 +32,7 @@ public:
         for(int i = 0;i<=n;i++){
             graph->at(i).clear();
         }
-        cout<<"ok"<<endl;
+        //cout<<"ok"<<endl;
 
 
     }
@@ -44,6 +44,7 @@ public:
     void addEdge(Vertex *a,Vertex *b,int cost);
     void showMatrix();
     bool bfs();
+    bool isExist(int a,int b);
 };
 
 
