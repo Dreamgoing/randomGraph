@@ -88,10 +88,11 @@ int main() {
 
         } else if(op=='c'){
 #ifdef BARABASI_ALBERT
-            BarabasiAlbert *baModel = new BarabasiAlbert(n);
+
             cout<<"input the size (n) of graph and the probability (p) between\n"
                     " two vertexes spilt with  space in order"<<endl;
             cin>>n>>p;
+            BarabasiAlbert *baModel = new BarabasiAlbert(n);
             int c,m;
             cout<<"input the size (c) of core graph and the links number of \n"
                     "each vertex spilt with space in order"<<endl;
